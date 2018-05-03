@@ -18,7 +18,7 @@
                     </Border>
                 </Canvas>
             </Grid>
-            <Slider Minimum="50" Maximum="250" x:Name="HeightSlider" ValueChanged="HeightSlider_ValueChanged">
+            <Slider Minimum="50" Maximum="250" x:Name="HeightSlider" ValueChanged="HeightSlider_ValueChanged" IsMoveToPointEnabled="True">
             </Slider>
 
             <StackPanel Orientation="Horizontal" >
