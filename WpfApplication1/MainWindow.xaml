@@ -8,13 +8,16 @@
         Title="MainWindow" Height="380" Width="640">
     <Grid>
         <StackPanel Margin=" 30">
-            <Canvas Width="400" Height="50" Background="Lavender">
-                <Border CornerRadius="10" Background="Aqua" x:Name="Height">
-                    <TextBlock x:Name="HeightNum" Width="50" Height="20" TextAlignment="Center">
-                       100 
-                    </TextBlock>
-                </Border>
-            </Canvas>
+            <Grid>
+                <Canvas Height="30" Background="Lavender" x:Name="Cav">
+
+                    <Border CornerRadius="10" Background="Aqua" x:Name="Height" >
+                        <TextBlock x:Name="HeightNum" Width="50" Height="20" TextAlignment="Center">
+                           100
+                        </TextBlock>
+                    </Border>
+                </Canvas>
+            </Grid>
             <Slider Minimum="50" Maximum="250" x:Name="HeightSlider" ValueChanged="HeightSlider_ValueChanged">
             </Slider>
 

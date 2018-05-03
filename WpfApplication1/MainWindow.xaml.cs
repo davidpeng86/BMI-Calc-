@@ -32,9 +32,11 @@ namespace WpfApplication1
                 //number
                 double heightVal = Math.Round(HeightSlider.Value, 1);
                 HeightNum.Text = heightVal.ToString();
+                //get actual width
+                double a = ((heightVal - 50) / 200) * (Cav.ActualWidth - 80);
 
                 //position
-                Canvas.SetLeft(Height, heightVal - 50);
+                Canvas.SetLeft(Height, a);
 
                 //BMI
                 double height = heightVal;
