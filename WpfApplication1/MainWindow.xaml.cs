@@ -95,6 +95,7 @@ namespace WpfApplication1
                 BMIdecimal.Text = ".00";
             }
 
+            // different messages
             if (bmi < 24)
             {
                 Reminder.FontSize = 14;
@@ -142,6 +143,7 @@ namespace WpfApplication1
             
         }
 
+        // responsive gimmick
         void ChangeWindowSize(object sender, SizeChangedEventArgs e)
         {
             PositionChange(SliderChange(HeightSlider.Value, HeightNum, " cm"), Height, H_Cav);
