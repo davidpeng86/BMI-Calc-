@@ -67,7 +67,7 @@ namespace WpfApplication1
             {
                 Val = Math.Round(value, 0);
                 block.Width = 60;
-                block.Text = Val.ToString() + " cm";
+                block.Text = Val.ToString() + unit;
             }
             return Val;
         }
@@ -94,14 +94,38 @@ namespace WpfApplication1
             {
                 BMIdecimal.Text = ".00";
             }
+            // change text color
+            if (bmi > 24)
+            {
+                int R, G = Convert.ToInt32((77 - (bmi - 24) * (77 / 76))), B = Convert.ToInt32((57 - (bmi - 24) * (57 / 76))) ;
+                R = 255;
+                if (G <= 0)
+                {
+                    G = 0;
+                    B = 0;
+                }
+                
+                SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(255, (byte)R, (byte)G, (byte)B));   
+                BMInum.Foreground = brush;
+                BMIdecimal.Foreground = brush;
 
+                // change BMI boldness
+                double boldness = 100 + (bmi - 15) * 20;
+                if (boldness > 999)
+                {
+                    boldness = 999;
+                }
+                BMInum.FontWeight = FontWeight.FromOpenTypeWeight(Convert.ToInt32(boldness));
+                BMIdecimal.FontWeight = FontWeight.FromOpenTypeWeight(Convert.ToInt32(boldness));
+
+            }
             // different messages
             if (bmi < 24)
             {
                 Reminder.FontSize = 14;
                 if (bmi < 18.5)
                 {
-                    Reminder.Foreground = Brushes.Aqua;
+                    Reminder.Foreground = Brushes.DarkBlue;
                     Reminder.Text = "What have you been eating???";
                 }
                 else
@@ -133,10 +157,10 @@ namespace WpfApplication1
                 }
             }
             else {
-                Reminder.Foreground = Brushes.Red;
+                Reminder.Foreground = new SolidColorBrush(Color.FromRgb(230, 58, 58));
                 Reminder.FontWeight = FontWeights.Bold;
                 Reminder.FontSize = 30;
-                Reminder.Text = "ＯＭＧ Ｕ Ｒ ２ ＦＡＴＴＴ";
+                Reminder.Text = "ＯＭＧ Ｕ Ｒ ２ ＦＡＴ";
                 // Automatically resize height and width relative to content
                 this.SizeToContent = SizeToContent.WidthAndHeight;
             }

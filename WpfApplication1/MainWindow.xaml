@@ -28,8 +28,8 @@
 			<Grid>
 				<Canvas Height="30" x:Name="H_Cav">
 
-                    <Border CornerRadius="10" Background="Aqua" x:Name="Height" Margin="0 5 0 0">
-						<TextBlock x:Name="HeightNum" Width="60" Height="20" FontSize="15" FontWeight="ExtraBold" TextAlignment="Center" Margin="0 2 0 0">
+					<Border CornerRadius="10" x:Name="Height" Margin="0 5 0 0" Background="#FFACB7">
+						<TextBlock x:Name="HeightNum" Width="60" Height="20" FontSize="15" FontWeight="ExtraBold" Foreground="White" TextAlignment="Center" Margin="1 2 1 1">
                            50 cm
                         </TextBlock>
                     </Border>
@@ -45,8 +45,9 @@
 			<Grid>
 				<Canvas Height="30" x:Name="W_Cav">
 
-					<Border CornerRadius="10" Background="Aqua" x:Name="Weight" Margin="0 5 0 0">
-						<TextBlock x:Name="WeightNum" Width="60" Height="20" FontSize="15" FontWeight="ExtraBold" TextAlignment="Center" Margin="0 2 0 0">
+					<Border CornerRadius="10" x:Name="Weight" Margin="0 5 0 0" Background="#FFACB7">
+						
+						<TextBlock x:Name="WeightNum" Width="60" Height="20" FontSize="15" FontWeight="ExtraBold" Foreground="White" TextAlignment="Center" Margin="1 2 1 1">
                         50 kg
 						</TextBlock>
 					</Border>
@@ -61,8 +62,8 @@
 			</TextBlock>
 			<StackPanel Orientation="Horizontal" >
 				
-				<TextBlock FontSize="40" x:Name="BMInum" Foreground="#F14D39">22</TextBlock>
-				<TextBlock FontSize="20" Margin="0 6 0 0" x:Name="BMIdecimal" Foreground="#F14D39" >.22</TextBlock>
+				<TextBlock FontSize="40" x:Name="BMInum" Foreground="#F14D39" FontWeight="Light">22</TextBlock>
+				<TextBlock FontSize="20" Margin="0 6 0 0" x:Name="BMIdecimal" Foreground="#F14D39" FontWeight="Light">.22</TextBlock>
 				
 			</StackPanel>
 			<TextBlock  Margin="0 10 0 0" x:Name="Reminder" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="DarkSlateGray" FontWeight="ExtraLight"> An apple a day keeps the doctor away.</TextBlock>
