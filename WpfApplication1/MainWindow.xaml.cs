@@ -29,38 +29,14 @@ namespace WpfApplication1
         {
             if (IsInitialized)
             {
-                //number
-                double heightVal = Math.Round(HeightSlider.Value, 1); ;
-                if (heightVal < 240)
-                {
-                    HeightNum.Width = HeightNum.Text.Length * 10;
-                }
-                else {
-                    heightVal = Math.Round(HeightSlider.Value, 0);
-                    HeightNum.Width = 60;
-                }
-                HeightNum.Text = heightVal.ToString() + " cm";
-                //get actual width
-                double a = ((heightVal - 50) / 200) * (H_Cav.ActualWidth - 60);
+                double heightVal = SliderChange(HeightSlider.Value, HeightNum);
 
                 //position
+                double a = ((heightVal - 50) / 200) * (H_Cav.ActualWidth - 60);
                 Canvas.SetLeft(Height, a);
 
                 //BMI
-                double height = heightVal;
-                double weight = Math.Round(WeightSlider.Value, 1);
-                double bmi;
-                bmi = weight / Math.Pow(height / 100, 2);
-
-                string[] part = Math.Round(bmi,2).ToString().Split('.');
-                BMInum.Text = part[0];
-                if (part.Length > 1)
-                {
-                    BMIdecimal.Text = "."+part[1];
-                }
-                else {
-                    BMIdecimal.Text = ".00";
-                }
+                BMI();
             }
         }
 
@@ -68,42 +44,50 @@ namespace WpfApplication1
         {
             if (IsInitialized)
             {
-                //number
-                double weightVal = Math.Round(WeightSlider.Value, 1);
-                
-                if (weightVal < 240)
-                {
-                    WeightNum.Width = WeightNum.Text.Length * 10;
-                }
-                else
-                {
-                    weightVal = Math.Round(WeightSlider.Value, 0);
-                    WeightNum.Width = 60;
-                }
-                WeightNum.Text = weightVal.ToString() + " kg";
-                WeightNum.Width = WeightNum.Text.Length * 10;
-                //get actual width
-                double a = ((weightVal - 50) / 200) * (H_Cav.ActualWidth - 60);
+                double weightVal = SliderChange(WeightSlider.Value, WeightNum);
 
                 //position
+                double a = ((weightVal - 50) / 200) * (H_Cav.ActualWidth - 60);
                 Canvas.SetLeft(Weight, a);
 
                 //BMI
-                double height = Math.Round(HeightSlider.Value, 1);
-                double weight = weightVal;
-                double bmi;
-                bmi = weight / Math.Pow(height / 100, 2);
+                BMI();
+            }
+        }
 
-                string[] part = Math.Round(bmi, 2).ToString().Split('.');
-                BMInum.Text = part[0];
-                if (part.Length > 1)
-                {
-                    BMIdecimal.Text = "." + part[1];
-                }
-                else
-                {
-                    BMIdecimal.Text = ".00";
-                }
+        double SliderChange(double value, TextBlock block)
+        {
+            double Val = Math.Round(value, 1);
+            if (Val < 240)
+            {
+                block.Text = Val.ToString() + " cm";
+                block.Width = block.Text.Length * 10;
+            }
+            else
+            {
+                Val = Math.Round(value, 0);
+                block.Width = 60;
+                block.Text = Val.ToString() + " cm";
+            }
+            return Val;
+        }
+
+        void BMI() {
+            //BMI
+            double height = Math.Round(HeightSlider.Value, 1);
+            double weight = Math.Round(WeightSlider.Value, 1);
+            double bmi;
+            bmi = weight / Math.Pow(height / 100, 2);
+
+            string[] part = Math.Round(bmi, 2).ToString().Split('.');
+            BMInum.Text = part[0];
+            if (part.Length > 1)
+            {
+                BMIdecimal.Text = "." + part[1];
+            }
+            else
+            {
+                BMIdecimal.Text = ".00";
             }
         }
     }
