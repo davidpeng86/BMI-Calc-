@@ -23,13 +23,15 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
+            
+            this.SizeToContent = SizeToContent.WidthAndHeight;
         }
 
         private void HeightSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (IsInitialized)
             {
-                double heightVal = SliderChange(HeightSlider.Value, HeightNum);
+                double heightVal = SliderChange(HeightSlider.Value, HeightNum, " cm");
 
                 //position
                 PositionChange(heightVal, Height, H_Cav);
@@ -43,22 +45,22 @@ namespace WpfApplication1
         {
             if (IsInitialized)
             {
-                double weightVal = SliderChange(WeightSlider.Value, WeightNum);
+                double weightVal = SliderChange(WeightSlider.Value, WeightNum," kg");
 
                 //position
-                PositionChange(weightVal,Weight,W_Cav);
+                PositionChange(weightVal, Weight, W_Cav);
 
                 //BMI
                 BMI();
             }
         }
 
-        double SliderChange(double value, TextBlock block)
+        double SliderChange(double value, TextBlock block, string unit)
         {
             double Val = Math.Round(value, 1);
             if (Val < 240)
             {
-                block.Text = Val.ToString() + " cm";
+                block.Text = Val.ToString() + unit;
                 block.Width = block.Text.Length * 10;
             }
             else
@@ -70,7 +72,7 @@ namespace WpfApplication1
             return Val;
         }
 
-        void PositionChange(double changeValue, Border displayBorder,Canvas displayCanvas) {
+        void PositionChange(double changeValue, Border displayBorder, Canvas displayCanvas) {
             double a = ((changeValue - 50) / 200) * (displayCanvas.ActualWidth - 60);
             Canvas.SetLeft(displayBorder, a);
         }
@@ -92,12 +94,61 @@ namespace WpfApplication1
             {
                 BMIdecimal.Text = ".00";
             }
+
+            if (bmi < 24)
+            {
+                Reminder.FontSize = 14;
+                if (bmi < 18.5)
+                {
+                    Reminder.Foreground = Brushes.Aqua;
+                    Reminder.Text = "What have you been eating???";
+                }
+                else
+                {
+                    Reminder.Foreground = Brushes.ForestGreen;
+                    Reminder.Text = "Healthy guy, keep it up!!!";
+                }
+            }
+            else if (bmi < 35)
+            {
+                Reminder.Foreground = Brushes.Red;
+                Reminder.FontSize = 18;
+                if (bmi < 30)
+                {
+                    Reminder.FontWeight = FontWeights.Bold;
+                    Reminder.Text = "Watchout for Obesity!!!";
+
+                    if (bmi < 27)
+                    {
+                        Reminder.FontWeight = FontWeights.Normal;
+                        Reminder.Text = "You're a bit overweight!!!";
+                    }
+                }
+                else
+                {
+                    Reminder.FontWeight = FontWeights.Bold;
+                    Reminder.FontSize = 26;
+                    Reminder.Text = "U Fatty LOL";
+                }
+            }
+            else {
+                Reminder.Foreground = Brushes.Red;
+                Reminder.FontWeight = FontWeights.Bold;
+                Reminder.FontSize = 30;
+                Reminder.Text = "ＯＭＧ Ｕ Ｒ ２ ＦＡＴＴＴ";
+                // Automatically resize height and width relative to content
+                this.SizeToContent = SizeToContent.WidthAndHeight;
+            }
+            
         }
 
-        private void ChangeWindowSize(object sender, SizeChangedEventArgs e)
+        void ChangeWindowSize(object sender, SizeChangedEventArgs e)
         {
-            PositionChange(SliderChange(HeightSlider.Value, HeightNum), Height, H_Cav);
-            PositionChange(SliderChange(WeightSlider.Value, WeightNum), Weight, W_Cav);
+            PositionChange(SliderChange(HeightSlider.Value, HeightNum, " cm"), Height, H_Cav);
+            PositionChange(SliderChange(WeightSlider.Value, WeightNum, " kg"), Weight, W_Cav);
+            
         }
+
+        
     }
 }

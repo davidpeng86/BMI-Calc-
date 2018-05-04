@@ -5,20 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="BMI Calculator" Height="400" Width="600" SizeChanged="ChangeWindowSize">
+        Title="BMI Calculator" Height="450" Width="600" SizeChanged="ChangeWindowSize">
     <Grid>
+		<Grid.Background>
+			<LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+				<GradientStop Color="#F14D39" Offset="0.2"/>
+				<GradientStop Color="#FFFFFFFF" Offset="0.7"/>
+			</LinearGradientBrush>
+		</Grid.Background>
         <StackPanel Margin=" 30">
 			<!--Title-->
-			<TextBlock Margin="0 0 0 30" TextAlignment="Center" FontSize="60" FontWeight="ExtraLight">
+			<TextBlock  Margin ="-5" TextAlignment="Center" FontSize="60" FontWeight="ExtraLight" Foreground =" White">
 				BMI Calculator
 			</TextBlock>
-			
+			<TextBlock Margin="0 0 0 20" TextAlignment="Center" Foreground =" White">
+				Made by Tz Peng
+			</TextBlock>
 			<!--Height-->
-			<TextBlock HorizontalAlignment="Center" FontWeight="Black">
+			<TextBlock Margin="0 0 0 5" HorizontalAlignment="Center" FontWeight="Black" Foreground =" White">
 					HEIGHT
 			</TextBlock>
 			<Grid>
-				<Canvas Height="30" Background="Lavender" x:Name="H_Cav">
+				<Canvas Height="30" x:Name="H_Cav">
 
                     <Border CornerRadius="10" Background="Aqua" x:Name="Height" Margin="0 5 0 0">
 						<TextBlock x:Name="HeightNum" Width="60" Height="20" FontSize="15" FontWeight="ExtraBold" TextAlignment="Center" Margin="0 2 0 0">
@@ -27,15 +35,15 @@
                     </Border>
                 </Canvas>
             </Grid>
-            <Slider Minimum="50" Maximum="250" x:Name="HeightSlider" ValueChanged="HeightSlider_ValueChanged" IsMoveToPointEnabled="True">
+            <Slider Minimum="50" Maximum="250" x:Name="HeightSlider" Value="150" ValueChanged="HeightSlider_ValueChanged" IsMoveToPointEnabled="True">
             </Slider>
 
 			<!--Weight-->
-			<TextBlock HorizontalAlignment="Center" FontWeight="Black">
+			<TextBlock Margin="0 15 0 0" HorizontalAlignment="Center" FontWeight="Black" Foreground =" White">
 					WEIGHT
 			</TextBlock>
 			<Grid>
-				<Canvas Height="30" Background="Lavender" x:Name="W_Cav">
+				<Canvas Height="30" x:Name="W_Cav">
 
 					<Border CornerRadius="10" Background="Aqua" x:Name="Weight" Margin="0 5 0 0">
 						<TextBlock x:Name="WeightNum" Width="60" Height="20" FontSize="15" FontWeight="ExtraBold" TextAlignment="Center" Margin="0 2 0 0">
@@ -48,13 +56,14 @@
 			</Slider>
 
 			<!--BMI-->
-			<TextBlock FontWeight="Black">
+			<TextBlock FontWeight="Black" Foreground="DimGray">
 				YOUR BMI
 			</TextBlock>
 			<StackPanel Orientation="Horizontal" >
-				<TextBlock FontSize="40" x:Name="BMInum">29</TextBlock>
-				<TextBlock FontSize="20" Margin="0 8 0 0" x:Name="BMIdecimal">.5</TextBlock>
+				<TextBlock FontSize="40" x:Name="BMInum" Foreground="#F14D39">22</TextBlock>
+				<TextBlock FontSize="20" Margin="0 8 0 0" x:Name="BMIdecimal" Foreground="#F14D39">.22</TextBlock>
 			</StackPanel>
+			<TextBlock  x:Name="Reminder" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="DarkSlateGray" FontWeight="ExtraLight"> An apple a day keeps the doctor away.</TextBlock>
 		</StackPanel>
     </Grid>
 </Window>
