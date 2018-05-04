@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="600">
+        Title="BMI Calculator" Height="400" Width="600" SizeChanged="ChangeWindowSize">
     <Grid>
         <StackPanel Margin=" 30">
 			<!--Title-->

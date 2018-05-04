@@ -32,8 +32,7 @@ namespace WpfApplication1
                 double heightVal = SliderChange(HeightSlider.Value, HeightNum);
 
                 //position
-                double a = ((heightVal - 50) / 200) * (H_Cav.ActualWidth - 60);
-                Canvas.SetLeft(Height, a);
+                PositionChange(heightVal, Height, H_Cav);
 
                 //BMI
                 BMI();
@@ -47,8 +46,7 @@ namespace WpfApplication1
                 double weightVal = SliderChange(WeightSlider.Value, WeightNum);
 
                 //position
-                double a = ((weightVal - 50) / 200) * (H_Cav.ActualWidth - 60);
-                Canvas.SetLeft(Weight, a);
+                PositionChange(weightVal,Weight,W_Cav);
 
                 //BMI
                 BMI();
@@ -72,6 +70,11 @@ namespace WpfApplication1
             return Val;
         }
 
+        void PositionChange(double changeValue, Border displayBorder,Canvas displayCanvas) {
+            double a = ((changeValue - 50) / 200) * (displayCanvas.ActualWidth - 60);
+            Canvas.SetLeft(displayBorder, a);
+        }
+
         void BMI() {
             //BMI
             double height = Math.Round(HeightSlider.Value, 1);
@@ -89,6 +92,12 @@ namespace WpfApplication1
             {
                 BMIdecimal.Text = ".00";
             }
+        }
+
+        private void ChangeWindowSize(object sender, SizeChangedEventArgs e)
+        {
+            PositionChange(SliderChange(HeightSlider.Value, HeightNum), Height, H_Cav);
+            PositionChange(SliderChange(WeightSlider.Value, WeightNum), Weight, W_Cav);
         }
     }
 }
