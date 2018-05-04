@@ -15,7 +15,7 @@
 		</Grid.Background>
         <StackPanel Margin=" 30">
 			<!--Title-->
-			<TextBlock  Margin ="-5" TextAlignment="Center" FontSize="60" FontWeight="ExtraLight" Foreground =" White">
+			<TextBlock  Margin ="-5" TextAlignment="Center" FontSize="50" FontWeight="ExtraLight" Foreground =" White">
 				BMI Calculator
 			</TextBlock>
 			<TextBlock Margin="0 0 0 20" TextAlignment="Center" Foreground =" White">
@@ -60,10 +60,12 @@
 				YOUR BMI
 			</TextBlock>
 			<StackPanel Orientation="Horizontal" >
+				
 				<TextBlock FontSize="40" x:Name="BMInum" Foreground="#F14D39">22</TextBlock>
-				<TextBlock FontSize="20" Margin="0 8 0 0" x:Name="BMIdecimal" Foreground="#F14D39">.22</TextBlock>
+				<TextBlock FontSize="20" Margin="0 6 0 0" x:Name="BMIdecimal" Foreground="#F14D39" >.22</TextBlock>
+				
 			</StackPanel>
-			<TextBlock  x:Name="Reminder" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="DarkSlateGray" FontWeight="ExtraLight"> An apple a day keeps the doctor away.</TextBlock>
+			<TextBlock  Margin="0 10 0 0" x:Name="Reminder" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="DarkSlateGray" FontWeight="ExtraLight"> An apple a day keeps the doctor away.</TextBlock>
 		</StackPanel>
     </Grid>
 </Window>
