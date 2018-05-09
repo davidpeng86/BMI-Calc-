@@ -33,7 +33,7 @@ namespace WpfApplication1
             {
                 double heightVal = SliderChange(HeightSlider.Value, HeightNum, " cm");
 
-                //position
+                // Position
                 PositionChange(heightVal, Height, H_Cav);
 
                 //BMI
@@ -47,14 +47,18 @@ namespace WpfApplication1
             {
                 double weightVal = SliderChange(WeightSlider.Value, WeightNum," kg");
 
-                //position
+                // Position
                 PositionChange(weightVal, Weight, W_Cav);
 
-                //BMI
+                // BMI
                 BMI();
             }
         }
 
+        // Text border changes dynamically to fit text length
+        // Changes display value to a whole number if value > 240
+        // to not let the value box get outta our window
+        // returns slider value 
         double SliderChange(double value, TextBlock block, string unit)
         {
             double Val = Math.Round(value, 1);
@@ -72,11 +76,14 @@ namespace WpfApplication1
             return Val;
         }
 
+        // Changes slider value text border position 
+        // changeValue - minimun value, ActualWidth - text border width
         void PositionChange(double changeValue, Border displayBorder, Canvas displayCanvas) {
             double a = ((changeValue - 50) / 200) * (displayCanvas.ActualWidth - 60);
             Canvas.SetLeft(displayBorder, a);
         }
 
+        // Calculate BMI
         void BMI() {
             //BMI
             double height = Math.Round(HeightSlider.Value, 1);
@@ -84,6 +91,7 @@ namespace WpfApplication1
             double bmi;
             bmi = weight / Math.Pow(height / 100, 2);
 
+            // Outputs BMI value
             string[] part = Math.Round(bmi, 2).ToString().Split('.');
             BMInum.Text = part[0];
             if (part.Length > 1)
@@ -94,7 +102,8 @@ namespace WpfApplication1
             {
                 BMIdecimal.Text = ".00";
             }
-            // change text color
+
+            // Changes text color as BMI gets greater and greater
             if (bmi > 24)
             {
                 int R, G = Convert.ToInt32((77 - (bmi - 24) * (77 / 76))), B = Convert.ToInt32((57 - (bmi - 24) * (57 / 76))) ;
@@ -109,7 +118,7 @@ namespace WpfApplication1
                 BMInum.Foreground = brush;
                 BMIdecimal.Foreground = brush;
 
-                // change BMI boldness
+                // Changes BMI boldness as BMI grows
                 double boldness = 100 + (bmi - 15) * 20;
                 if (boldness > 999)
                 {
@@ -119,7 +128,9 @@ namespace WpfApplication1
                 BMIdecimal.FontWeight = FontWeight.FromOpenTypeWeight(Convert.ToInt32(boldness));
 
             }
-            // different messages
+
+            // Different reminder messages in different weight range
+            // Normal weight and too light
             if (bmi < 24)
             {
                 BMInum.FontWeight = FontWeights.Light;
@@ -136,6 +147,7 @@ namespace WpfApplication1
                     Reminder.Text = "Healthy guy, keep it up!!!";
                 }
             }
+            // A bit heavy
             else if (bmi < 35)
             {
                 Reminder.Foreground = Brushes.Red;
@@ -158,6 +170,7 @@ namespace WpfApplication1
                     Reminder.Text = "U Fatty LOL";
                 }
             }
+            // Too fat
             else {
                 Reminder.Foreground = new SolidColorBrush(Color.FromRgb(230, 58, 58));
                 Reminder.FontWeight = FontWeights.Bold;
@@ -168,13 +181,14 @@ namespace WpfApplication1
             
         }
 
-        // responsive gimmick
+        // Content size changes as window changes size
         void ChangeWindowSize(object sender, SizeChangedEventArgs e)
         {
             PositionChange(SliderChange(HeightSlider.Value, HeightNum, " cm"), Height, H_Cav);
             PositionChange(SliderChange(WeightSlider.Value, WeightNum, " kg"), Weight, W_Cav);
         }
 
+        // Resets everything
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
             HeightSlider.Value = 150;
