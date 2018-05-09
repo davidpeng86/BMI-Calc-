@@ -23,8 +23,8 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
-            
-            this.SizeToContent = SizeToContent.WidthAndHeight;
+            // Automatically resize height relative to content
+            this.SizeToContent = SizeToContent.Height;
         }
 
         private void HeightSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -122,6 +122,8 @@ namespace WpfApplication1
             // different messages
             if (bmi < 24)
             {
+                BMInum.FontWeight = FontWeights.Light;
+                BMIdecimal.FontWeight = FontWeights.Light;
                 Reminder.FontSize = 14;
                 if (bmi < 18.5)
                 {
@@ -161,8 +163,7 @@ namespace WpfApplication1
                 Reminder.FontWeight = FontWeights.Bold;
                 Reminder.FontSize = 30;
                 Reminder.Text = "ＯＭＧ Ｕ Ｒ ２ ＦＡＴ";
-                // Automatically resize height and width relative to content
-                this.SizeToContent = SizeToContent.WidthAndHeight;
+                
             }
             
         }
@@ -172,9 +173,18 @@ namespace WpfApplication1
         {
             PositionChange(SliderChange(HeightSlider.Value, HeightNum, " cm"), Height, H_Cav);
             PositionChange(SliderChange(WeightSlider.Value, WeightNum, " kg"), Weight, W_Cav);
-            
         }
 
-        
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            HeightSlider.Value = 150;
+            WeightSlider.Value = 50;
+            BMInum.Text = "22";
+            BMIdecimal.Text = ".22";
+            Reminder.FontWeight = FontWeights.Light;
+            Reminder.FontSize = 14;
+            Reminder.Foreground = Brushes.DarkSlateGray;
+            Reminder.Text = "An apple a day keeps the doctor away.";
+        }
     }
 }
